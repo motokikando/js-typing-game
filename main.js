@@ -87,6 +87,7 @@ function finishGame(){
 
 }
 
+//リスタートボタン 
 function resetValues(){
     inputElement.disabled = false
     inputElement.innerHTML = ""
