@@ -82,11 +82,8 @@ function startGame(){
 
 function finishGame(){
     clearInterval(timer)
-    // error_text.innerText = total_error
     inputElement.disabled = true
     diplayElement.innerText = "Finish"
-    let button = document.createElement("button") //リスタート要素を追加
-    inputElement.appendChild(element)
 
 }
 
@@ -95,6 +92,7 @@ function resetValues(){
     inputElement.innerHTML = ""
     error_text.innerText = 0
     score_text.innerText = 0
+
     time_limit = 30
     timer_text.innerText = time_limit
 
