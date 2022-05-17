@@ -1,11 +1,21 @@
 const API_URL = 'https://www.boredapi.com/api/activity/'
 const inputElement= document.getElementById('inputText')
 const diplayElement = document.getElementById('sentenceDisplay')
+const timer_text = document.getElementById('curr_timer')
+const error_text = document.getElementById('curr_errors')
+const accuracy_text = document.getElementById('curr_accuracy')
+const score_text = document.getElementById('curr_score')
+
+let time_limit = 30;
+let accuracy = 0;
+let errors = 0;
+let scores = 0;
 
 
 //入力操作
 inputElement.addEventListener('input', () => {
     let correct = true
+    let errors = 0
     //spanタグを全て取得してリストにする。
     const arrayAPI = diplayElement.querySelectorAll('span')
     console.log(arrayAPI)
@@ -25,15 +35,17 @@ inputElement.addEventListener('input', () => {
             charSpan.classList.remove('correct')
             charSpan.classList.add('incorrect')
             correct = false
+            errors += 1
+            error_text.innerText = errors
         }
     })
-    if (correct){renderNewSentence()}
+    if (correct){
+        scores += 1
+        renderNewSentence()
+        score_text.innerText = scores
+
+    }
 })
-
-
-
-
-
 
 function getAPI(){
     return fetch(API_URL)
@@ -55,4 +67,27 @@ async function renderNewSentence(){
 }
 
 
-renderNewSentence()
+function updateTimer(){
+    if (time_limit > 0 ){
+        time_limit--;
+        timer_text.innerText = time_limit + "s";
+    }
+    else {finishGame()}
+}
+
+function startGame(){
+    resetValues();
+    renderNewSentence();
+    timer = setInterval(updateTimer, 1000);
+}
+
+function finishGame(){
+    clearInterval(timer)
+    // error_text.innerText = total_error
+    error_text.innerText = 0
+    score_text.innerText = 0
+}
+
+function resetValues(){
+
+}

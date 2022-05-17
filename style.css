@@ -39,7 +39,7 @@ body, .input {
     justify-content: center;
 }
 .timer, .errors,
-.accuracy{
+.accuracy, .score{
   background-color: #eaa82e;
   margin: 8px;
   padding: 12px;
