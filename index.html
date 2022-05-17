@@ -9,8 +9,21 @@
     <title>Typing game</title>
 </head>
 <body>
-    <div class="timer"></div>
     <div class="container">
+        <div class="flex">
+            <div class="timer">
+                <div class="header_text">Timer</div>
+                <div id="curr_timer">30</div>
+            </div>
+            <div class="errors">
+                <div class="header_text">Errors</div>
+                <div id="curr_errors">0</div>
+            </div>
+            <div class="accuracy">
+                <div class="header_text">Accuracy</div>
+                <div id="curr_accuracy">100</div>
+            </div>
+        </div>
         <div class="display" id="sentenceDisplay"></div>
         <textarea id="inputText" class="input" autofocus></textarea>
     </div>

@@ -3,8 +3,6 @@ const inputElement= document.getElementById('inputText')
 const diplayElement = document.getElementById('sentenceDisplay')
 
 
-
-
 //入力操作
 inputElement.addEventListener('input', () => {
     let correct = true
