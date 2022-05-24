@@ -5,6 +5,9 @@ const timer_text = document.getElementById('curr_timer')
 const error_text = document.getElementById('curr_errors')
 const accuracy_text = document.getElementById('curr_accuracy')
 const score_text = document.getElementById('curr_score')
+const typingSound = new Audio("./audio/typingsound.mp3")
+const correctSound = new Audio("./audio/correctsound.mp3")
+const wrongSound = new Audio("./audio/wrongsound.mp3")
 
 let time_limit = 10;
 let accuracy = 0;
@@ -13,18 +16,24 @@ let scores = 0;
 
 
 //入力操作
-inputElement.addEventListener('input', () => {
+inputElement.addEventListener('input', () => {  //inputするたびにアロー関数{}内の処理が呼ばれる
     let correct = true
     let errors = 0
+//入力音をつける
+    typingSound.play();
+    typingSound.currentTime = 0;
+
     //spanタグを全て取得してリストにする。
     const arrayAPI = diplayElement.querySelectorAll('span')
     console.log(arrayAPI)
-    //split('')で入力した文字列を配列として管理
-    const arrayValue = inputElement.value.split('')
-    //arrayAPIの文字とarrayValueの判定
+    //split('')でinputElementに入力された文字列を分解し、配列として管理
+    const arrayValue = inputElement.value.split('')  
+/*↓arrayAPI(問題文をspanにしたもの)とarrayValue(入力した文字列をspanにしたもの)
+比較し、合っているか確認する
+*/
     arrayAPI.forEach((charSpan, index) => {
-        const input_char = arrayValue[index]
-        if (input_char == null){
+        const input_char = arrayValue[index] 
+        if (input_char == null){   //何も入力されていない場合
             charSpan.classList.remove('correct')
             charSpan.classList.remove('incorrect')
             correct = false
@@ -37,12 +46,16 @@ inputElement.addEventListener('input', () => {
             correct = false
             errors += 1
             error_text.innerText = errors
+            wrongSound.play();
+            wrongSound.currentTime = 0;
         }
     })
     if (correct){
         scores += 1
         renderNewSentence()
         score_text.innerText = scores
+        correctSound.play();
+        correctSound.currentTime = 0;
     }
 })
 
