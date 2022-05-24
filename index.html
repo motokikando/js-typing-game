@@ -9,6 +9,10 @@
     <title>Typing game</title>
 </head>
 <body>
+    <div id="fullOverlay">
+        <div id="overlaytext">
+        </div>
+    </div>
     <div class="container">
         <div class="flex">
             <div class="timer">
@@ -26,11 +30,11 @@
             <div class="score">
                 <div class="header_text">Score</div>
                 <div id="curr_score">0</div>
-            </div>          
+            </div>
         </div>
         <div class="display" id="sentenceDisplay"></div>
         <textarea id="inputText" class="input" onfocus="startGame()" placeholder="start typing here..."></textarea>
-        <button class="restart_btn" onclick="resetValues()">Restart</button>
+        <button class="restart_btn" onclick="resetValues(),ableinput()">Restart</button>
     </div>
 </body>
 </html>
