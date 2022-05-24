@@ -23,14 +23,14 @@ inputElement.addEventListener('input', () => {  //inputするたびにアロー�
     typingSound.play();
     typingSound.currentTime = 0;
 
+    
     //spanタグを全て取得してリストにする。
     const arrayAPI = diplayElement.querySelectorAll('span')
     console.log(arrayAPI)
     //split('')でinputElementに入力された文字列を分解し、配列として管理
     const arrayValue = inputElement.value.split('')  
 /*↓arrayAPI(問題文をspanにしたもの)とarrayValue(入力した文字列をspanにしたもの)
-比較し、合っているか確認する
-*/
+比較し、合っているか確認する*/
     arrayAPI.forEach((charSpan, index) => {
         const input_char = arrayValue[index] 
         if (input_char == null){   //何も入力されていない場合
