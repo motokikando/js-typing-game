@@ -7,6 +7,7 @@ const accuracy_text = document.getElementById('curr_accuracy')
 const score_text = document.getElementById('curr_score')
 const overlay = document.getElementById("fullOverlay")
 const overlaytext = document.getElementById("overlaytext")
+const overlayresult = document.getElementById("overlaytext2")
 const typingSound = new Audio("./audio/typingsound.mp3")
 const correctSound = new Audio("./audio/correctsound.mp3")
 const wrongSound = new Audio("./audio/wrongsound.mp3")
@@ -137,6 +138,7 @@ function finishGame(){
     console.log(misstype)
 }
 
+
 //リスタートボタン
 function resetValues(){
     inputElement.innerHTML = ""
@@ -180,6 +182,10 @@ function countdown(){
         time_limit=31;
         inputElement.disabled = false;
     }
+}
+
+function resultDisplay(){
+
 }
 
 function finishStimer(){
