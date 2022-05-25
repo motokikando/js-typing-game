@@ -55,8 +55,8 @@ inputElement.addEventListener('input', () => {
             correct = false
             wrongSound.play();
             wrongSound.currentTime = 0;
-            // misstype.push([charSpan.innerText,input_char])
-            // adderror(index,1);
+            misstype.push([charSpan.innerText,input_char])
+            adderror(index,1);
         }
     })
     if (correct){
