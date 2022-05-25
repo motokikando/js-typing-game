@@ -7,6 +7,10 @@ const accuracy_text = document.getElementById('curr_accuracy')
 const score_text = document.getElementById('curr_score')
 const overlay = document.getElementById("fullOverlay")
 const overlaytext = document.getElementById("overlaytext")
+const typingSound = new Audio("./audio/typingsound.mp3")
+const correctSound = new Audio("./audio/correctsound.mp3")
+const wrongSound = new Audio("./audio/wrongsound.mp3")
+
 
 let IsGame = false;
 
@@ -29,11 +33,11 @@ function setcarsol(){
 //入力操作
 inputElement.addEventListener('input', () => {
     let correct = true
-    //spanタグを全て取得してリストにする。
+    typingSound.play();
+    typingSound.currentTime = 0;
+
     const arrayAPI = diplayElement.querySelectorAll('span')
-    //split('')で入力した文字列を配列として管理
     const arrayValue = inputElement.value.split('')
-    //arrayAPIの文字とarrayValueの判定
     arrayAPI.forEach((charSpan, index) => {
         const input_char = arrayValue[index]
         if (input_char == null){
@@ -48,14 +52,18 @@ inputElement.addEventListener('input', () => {
             charSpan.classList.remove('correct')
             charSpan.classList.add('incorrect')
             correct = false
-            adderror(index,1);
-            misstype.push([charSpan.innerText,input_char])
+            wrongSound.play();
+            wrongSound.currentTime = 0;
+            // misstype.push([charSpan.innerText,input_char])
+            // adderror(index,1);
         }
     })
     if (correct){
         scores += 1
         renderNewSentence()
         score_text.innerText = scores
+        correctSound.play();
+        correctSound.currentTime = 0;
     }
     console.log(errorstate);
 })
