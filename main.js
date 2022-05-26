@@ -36,7 +36,6 @@ inputElement.addEventListener('input', () => {
     let correct = true
     typingSound.play();
     typingSound.currentTime = 0;
-
     const arrayAPI = diplayElement.querySelectorAll('span')
     const arrayValue = inputElement.value.split('')
     arrayAPI.forEach((charSpan, index) => {
@@ -128,6 +127,11 @@ function finishGame(){
     clearInterval(timer)
     IsGame = false;
     inputElement.disabled = true
+    overlaytoggle();
+    const btn = document.createElement('button');
+    btn.innerHTML = 'restart'
+    overlay.appendChild(btn)
+    overlay.querySelector('button').addEventListener('click', ()=>{window.location.reload()})
     diplayElement.innerText = "Finish"
     let new_array = misstype.filter(function (i) {
         if (!this[i[1]]) {
@@ -176,7 +180,7 @@ function countdown(){
         first_countdown--;
         time_limit=31;
     }else{
-        overlaytext.innerText = "";
+        overlaytext.innerText = "...";
         finishStimer();
         overlaytoggle();
         time_limit=31;
