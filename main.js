@@ -14,14 +14,12 @@ const wrongSound = new Audio("./audio/wrongsound.mp3")
 
 
 let IsGame = false;
-
 let time_limit = 10;
 let accuracy = 0;
 let errors = 0;
 let errorstate = [];
 let scores = 0;
 let first_countdown = 3;
-
 let misstype = [];
 
 document.addEventListener('keypress', setcarsol);
@@ -66,6 +64,7 @@ inputElement.addEventListener('input', () => {
         correctSound.currentTime = 0;
     }
     console.log(errorstate);
+
 })
 
 function getAPI(){
@@ -101,7 +100,6 @@ async function renderNewSentence(){
     inputElement.value = null
 }
 
-
 function updateTimer(){
     if (time_limit > 0 ){
         time_limit--;
@@ -128,17 +126,9 @@ function finishGame(){
     IsGame = false;
     inputElement.disabled = true
     overlaytoggle();
-    const btn = document.createElement('button');
-    btn.innerHTML = 'restart'
-    overlay.appendChild(btn)
-    overlay.querySelector('button').addEventListener('click', ()=>{window.location.reload()})
-    diplayElement.innerText = "Finish"
-    let new_array = misstype.filter(function (i) {
-        if (!this[i[1]]) {
-            return this[i[1]] = true;
-        }
-    });
-    console.log(new_array);
+    resultDisplay();
+    restartButton();
+
     console.log(misstype)
 }
 
@@ -148,7 +138,7 @@ function resetValues(){
     inputElement.innerHTML = ""
     error_text.innerText = 0
     score_text.innerText = 0
-    first_countdown = 5
+    first_countdown = 3
     time_limit = 30
     errors = 0
     timer_text.innerText = time_limit
@@ -174,22 +164,37 @@ function countdown(){
     if(first_countdown>0){
         overlaytext.innerText = first_countdown;
         first_countdown--;
-        time_limit=31;
+        time_limit=3;
     }else if(first_countdown==0){
         overlaytext.innerText = "Start!";
         first_countdown--;
-        time_limit=31;
+        time_limit=3;
     }else{
         overlaytext.innerText = "...";
         finishStimer();
         overlaytoggle();
-        time_limit=31;
+        time_limit=3;
         inputElement.disabled = false;
     }
 }
 
 function resultDisplay(){
+    overlaytext.innerText = "Finish!"
+    let error_result = document.createElement('h3');
+    let new_array = misstype.filter(function (i) {
+        if (!this[i[1]]) {
+            return this[i[1]] = true;
+        }
+    });
+    error_result.innerHTML = "Error " + parseInt(new_array.length)
+    overlaytext.appendChild(error_result);
+}
 
+function restartButton(){
+    const btn = document.createElement('button')
+    btn.innerHTML = 'restart'
+    overlaytext.appendChild(btn)
+    overlaytext.querySelector('button').addEventListener('click', ()=>{window.location.reload()})
 }
 
 function finishStimer(){
