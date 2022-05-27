@@ -22,12 +22,12 @@ let first_countdown = 3;
 let misstype = [];
 let misstype_letter = [];
 
-document.addEventListener("keypress", setcarsol);
+// document.addEventListener("keypress", setcarsol);
 
-function setcarsol() {
-  inputElement.focus();
-  inputElement.setSelectionRange(-1, -1);
-}
+// function setcarsol() {
+//   inputElement.focus();
+//   inputElement.setSelectionRange(-1, -1);
+// }
 
 //入力操作
 inputElement.addEventListener("input", () => {
