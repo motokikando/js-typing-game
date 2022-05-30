@@ -21,13 +21,6 @@ let scores = 0;
 let first_countdown = 3;
 let misstype = [];
 let misstype_letter = [];
-let word_count = 0; 
-document.addEventListener("keypress", setcarsol);
-
-function setcarsol() {
-  inputElement.focus();
-  inputElement.setSelectionRange(-1, -1);
-}
 
 //入力操作
 inputElement.addEventListener("input", () => {
