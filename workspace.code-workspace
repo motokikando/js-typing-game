@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "js-typing-game",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "js-typing-game"
+	}
+}

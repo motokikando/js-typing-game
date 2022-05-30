@@ -22,13 +22,6 @@ let first_countdown = 3;
 let misstype = [];
 let misstype_letter = [];
 
-// document.addEventListener("keypress", setcarsol);
-
-// function setcarsol() {
-//   inputElement.focus();
-//   inputElement.setSelectionRange(-1, -1);
-// }
-
 //入力操作
 inputElement.addEventListener("input", () => {
   let correct = true;
@@ -36,6 +29,7 @@ inputElement.addEventListener("input", () => {
   typingSound.currentTime = 0;
   const arrayAPI = diplayElement.querySelectorAll("span");
   const arrayValue = inputElement.value.split("");
+  //console.log(arrayAPI);
   arrayAPI.forEach((charSpan, index) => {
     const input_char = arrayValue[index];
     if (input_char == null) {
@@ -65,8 +59,15 @@ inputElement.addEventListener("input", () => {
     score_text.innerText = scores;
     correctSound.play();
     correctSound.currentTime = 0;
+    let correct_char = [];
+    arrayValue.forEach((v) => {if (v !== " ") { 
+        correct_char.push(v) 
+    }})
+    
+    word_count += correct_char.length;
+    console.log(word_count);
   }
-  console.log(errorstate);
+  //console.log(arrayValue);
 });
 
 function getAPI() {
@@ -113,7 +114,7 @@ function updateTimer() {
 
 function startGame() {
   if (!IsGame) {
-    inputElement.disabled = true;
+    inputElement.disabled = true; //
     overlaytoggle();
     startTimer();
     loadmsg();
@@ -125,6 +126,12 @@ function startGame() {
 }
 
 function finishGame() {
+  let l = [];
+  l = errorstate.filter(v => { return v == 0 });
+  console.log(l);
+  word_count += l.length
+  console.log(word_count);
+
   clearInterval(timer);
   IsGame = false;
   inputElement.disabled = true;
@@ -132,7 +139,7 @@ function finishGame() {
   resultDisplay();
   restartButton();
 
-  console.log(misstype);
+  //console.log(misstype);
 }
 
 //リスタートボタン
@@ -185,6 +192,7 @@ function resultDisplay() {
   let score_result = document.createElement("h3");
   let error_result = document.createElement("h3");
   let misstype_result = document.createElement("h3");
+  let WPM_result = document.createElement("h3");
   let s = new Set(misstype_letter);
   let ans = [];
   s.forEach((v) => ans.push(v));
@@ -193,13 +201,16 @@ function resultDisplay() {
       return (this[i[1]] = true);
     }
   });
+  WPM_result.innerHTML = "WPM :" + (word_count / 15) * 60;
   score_result.innerHTML = "Score : " + score_text.innerText;
   error_result.innerHTML = "Error : " + error_text.innerText;
   misstype_result.innerHTML = "Misstype : " + ans.join(" ");
 
+  overlaytext.appendChild(WPM_result);
   overlaytext.appendChild(score_result);
   overlaytext.appendChild(error_result);
   overlaytext.appendChild(misstype_result);
+  
 }
 
 function restartButton() {
