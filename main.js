@@ -73,6 +73,7 @@ inputElement.addEventListener("input", () => {
   //console.log(arrayValue);
 });
 
+
 function getAPI() {
   return fetch(API_URL)
     .then((response) => response.json())
@@ -178,16 +179,16 @@ function countdown() {
   if (first_countdown > 0) {
     overlaytext.innerText = first_countdown;
     first_countdown--;
-    time_limit = 61;
+    time_limit = 5;
   } else if (first_countdown == 0) {
     overlaytext.innerText = "Start!";
     first_countdown--;
-    time_limit = 61;
+    time_limit = 5;
   } else {
     overlaytext.innerText = "...";
     finishStimer();
     overlaytoggle();
-    time_limit = 61;
+    time_limit = 5;
     inputElement.disabled = false;
   }
 }
@@ -220,6 +221,26 @@ function resultDisplay() {
 function restartButton() {
   let btn = document.createElement("button");
   btn.innerHTML = "restart";
+  btn.style.cssText = "font-weight:700;"
+    + "font-size: 1.6rem;"
+    + "line-height: 1.5;"
+    + "position: relative;"
+    + "display: inline-block;"
+    + "padding: 0.4rem 1.6rem;"
+    + "cursor: pointer;"
+    + "webkit-user-select: none;"
+    + "moz-user-select: none;"
+    + "ms-user-select: none;"
+    + "user-select: none;"
+    + "webkit-transition: all 0.3s;"
+    + "transition: all 0.3s;"
+    + "text-align: center;"
+    + "vertical-align: middle;"
+    + "text-decoration: none;"
+    + "letter-spacing: 0.1em;"
+    + "color: #F0FFF0;"
+    + "border-radius: 1.0rem;"
+    +"background-color:#4B0082;";
   overlaytext.appendChild(btn);
   overlaytext.querySelector("button").addEventListener("click", () => {
     window.location.reload();
