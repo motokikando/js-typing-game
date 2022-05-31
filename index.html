@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src = "main.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" defer></script>
     <title>Typing game</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="fullOverlay">
-        <div id="overlaytext" ></div>
+      <div id="overlaytext"></div>
     </div>
     <div class="container">
-        <div class="flex">
-            <div class="timer">
-                <div class="header_text">Timer</div>
-                <div id="curr_timer">15</div>
-            </div>
-            <div class="errors">
-                <div class="header_text">Errors</div>
-                <div id="curr_errors">0</div>
-            </div>
-            <!-- <div class="accuracy">
+      <div class="flex">
+        <div class="timer">
+          <div class="header_text">Timer</div>
+          <div id="curr_timer">60</div>
+        </div>
+        <div class="errors">
+          <div class="header_text">Errors</div>
+          <div id="curr_errors">0</div>
+        </div>
+        <!-- <div class="accuracy">
                 <div class="header_text">Accuracy</div>
                 <div id="curr_accuracy"></div>
             </div> -->
-            <div class="score">
-                <div class="header_text">Score</div>
-                <div id="curr_score">0</div>
-            </div>
+        <div class="score">
+          <div class="header_text">Score</div>
+          <div id="curr_score">0</div>
         </div>
-        <div class="display" id="sentenceDisplay"></div>
-        <textarea id="inputText" class="input" onfocus="startGame()" placeholder="start typing here..."></textarea>
-        <button class="restart_btn" onclick="resetValues(),ableinput()">Restart</button>
+      </div>
+      <div class="display" id="sentenceDisplay"></div>
+      <textarea
+        id="inputText"
+        class="input"
+        onfocus="startGame()"
+        placeholder="start typing here..."
+      ></textarea>
+      <button class="restart_btn" onclick="resetValues(),ableinput()">Restart</button>
     </div>
-</body>
+  </body>
 </html>

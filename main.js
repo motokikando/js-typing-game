@@ -13,7 +13,7 @@ const correctSound = new Audio("./audio/correctsound.mp3");
 const wrongSound = new Audio("./audio/wrongsound.mp3");
 
 let IsGame = false;
-let time_limit = 10;
+let time_limit = 60;
 let accuracy = 0;
 let errors = 0;
 let errorstate = [];
@@ -32,7 +32,7 @@ inputElement.addEventListener("input", () => {
   const arrayValue = inputElement.value.split("");
   arrayAPI.forEach((charSpan, index) => {
     const input_char = arrayValue[index];
-      //入力削除
+    //入力削除
     if (input_char == null) {
       charSpan.classList.remove("correct");
       charSpan.classList.remove("incorrect");
@@ -61,9 +61,11 @@ inputElement.addEventListener("input", () => {
     correctSound.play();
     correctSound.currentTime = 0;
     let correct_char = [];
-    arrayValue.forEach((v) => {if (v !== " ") {
-        correct_char.push(v)
-    }})
+    arrayValue.forEach((v) => {
+      if (v !== " ") {
+        correct_char.push(v);
+      }
+    });
 
     word_count += correct_char.length;
     console.log(word_count);
@@ -128,9 +130,11 @@ function startGame() {
 
 function finishGame() {
   let l = [];
-  l = errorstate.filter(v => { return v == 0 });
+  l = errorstate.filter((v) => {
+    return v == 0;
+  });
   console.log(l);
-  word_count += l.length
+  word_count += l.length;
   console.log(word_count);
 
   clearInterval(timer);
@@ -149,7 +153,7 @@ function resetValues() {
   error_text.innerText = 0;
   score_text.innerText = 0;
   first_countdown = 3;
-  time_limit = 15;
+  time_limit = 60;
   errors = 0;
   timer_text.innerText = time_limit;
 }
@@ -174,16 +178,16 @@ function countdown() {
   if (first_countdown > 0) {
     overlaytext.innerText = first_countdown;
     first_countdown--;
-    time_limit = 16;
+    time_limit = 61;
   } else if (first_countdown == 0) {
     overlaytext.innerText = "Start!";
     first_countdown--;
-    time_limit = 16;
+    time_limit = 61;
   } else {
     overlaytext.innerText = "...";
     finishStimer();
     overlaytoggle();
-    time_limit = 16;
+    time_limit = 61;
     inputElement.disabled = false;
   }
 }
@@ -202,7 +206,7 @@ function resultDisplay() {
       return (this[i[1]] = true);
     }
   });
-  WPM_result.innerHTML = "WPM :" + (word_count / 15) * 60;
+  WPM_result.innerHTML = "WPM :" + word_count ;
   score_result.innerHTML = "Score : " + score_text.innerText;
   error_result.innerHTML = "Error : " + error_text.innerText;
   misstype_result.innerHTML = "Misstype : " + ans.join(" ");
@@ -211,7 +215,6 @@ function resultDisplay() {
   overlaytext.appendChild(score_result);
   overlaytext.appendChild(error_result);
   overlaytext.appendChild(misstype_result);
-
 }
 
 function restartButton() {
