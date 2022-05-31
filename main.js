@@ -1,4 +1,4 @@
-const API_URL = "https://www.boredapi.com/api/activity/";
+const API_URL = "http://www.boredapi.com/api/activity/";
 const inputElement = document.getElementById("inputText");
 const diplayElement = document.getElementById("sentenceDisplay");
 const timer_text = document.getElementById("curr_timer");
