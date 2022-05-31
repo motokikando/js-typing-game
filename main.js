@@ -21,6 +21,7 @@ let scores = 0;
 let first_countdown = 3;
 let misstype = [];
 let misstype_letter = [];
+let word_count = 0;
 
 //入力操作
 inputElement.addEventListener("input", () => {
@@ -29,9 +30,9 @@ inputElement.addEventListener("input", () => {
   typingSound.currentTime = 0;
   const arrayAPI = diplayElement.querySelectorAll("span");
   const arrayValue = inputElement.value.split("");
-  //console.log(arrayAPI);
   arrayAPI.forEach((charSpan, index) => {
     const input_char = arrayValue[index];
+      //入力削除
     if (input_char == null) {
       charSpan.classList.remove("correct");
       charSpan.classList.remove("incorrect");
@@ -54,16 +55,16 @@ inputElement.addEventListener("input", () => {
     }
   });
   if (correct) {
-    scores += 1;
+    scores += 100;
     renderNewSentence();
     score_text.innerText = scores;
     correctSound.play();
     correctSound.currentTime = 0;
     let correct_char = [];
-    arrayValue.forEach((v) => {if (v !== " ") { 
-        correct_char.push(v) 
+    arrayValue.forEach((v) => {if (v !== " ") {
+        correct_char.push(v)
     }})
-    
+
     word_count += correct_char.length;
     console.log(word_count);
   }
@@ -210,7 +211,7 @@ function resultDisplay() {
   overlaytext.appendChild(score_result);
   overlaytext.appendChild(error_result);
   overlaytext.appendChild(misstype_result);
-  
+
 }
 
 function restartButton() {
